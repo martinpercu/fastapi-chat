@@ -8,13 +8,11 @@ from openai import OpenAI
 
 import os
 
-# # get the OPENAI_KEY from environment
-# openai_api_ = os.environ.get("API_KEY")
-api_key_telegram = os.environ.get("OPENAI_API_KEY")
-
+# Get the OPENAI_KEY from environment
+OPENAI_KEY = os.environ.get("OPENAI_API_KEY")
 
 # Initialize OpenAI client
-client = OpenAI(api_key=api_key_telegram)
+client = OpenAI(api_key=OPENAI_KEY)
 
 # Initialize FastAPI app
 app = FastAPI()
@@ -29,10 +27,10 @@ app.add_middleware(
 )
 
 
-
 # Define request model
 class ChatRequest(BaseModel):
     message: str
+
 
 @app.get("/")
 async def home():
@@ -40,10 +38,8 @@ async def home():
 
 @app.get("/testopenaiapi")
 async def sendApi():
-    eso = api_key_telegram
     teta = str(client)
-    return {"teta es": teta,
-            "telegrma": eso}
+    return {"teta es": teta}
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: Optional[str] = None):
