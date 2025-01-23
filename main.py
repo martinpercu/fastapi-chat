@@ -1,4 +1,4 @@
-from variables import OPENAI_KEY
+# from variables import OPENAI_KEY
 from fastapi import FastAPI, HTTPException, Request
 from typing import Optional
 
