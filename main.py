@@ -17,7 +17,7 @@ import openai
 
 
 # Get the OPENAI_KEY from environment
-# OPENAI_KEY = os.environ.get("OPENAI_API_KEY")
+OPENAI_KEY = os.environ.get("OPENAI_API_KEY")
 
 # clientOpenAi = OpenAI(api_key=OPENAI_KEY)
 
