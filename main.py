@@ -1,4 +1,4 @@
-from variables import OPENAI_KEY
+# from variables import OPENAI_KEY
 from fastapi import FastAPI, HTTPException
 from typing import Optional
 
@@ -49,7 +49,8 @@ class ChatRequest(BaseModel):
 
 @app.get("/")
 async def home():
-    return {"message": "Estamos joya adca"}
+    return {"message": "Estamos joya adca",
+            "codigoloco": OPENAI_KEY}
 
 @app.get("/testopenaiapi")
 async def sendApi():
