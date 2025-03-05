@@ -1,4 +1,4 @@
-from variables import OPENAI_KEY
+# from variables import OPENAI_KEY
 from fastapi import FastAPI, HTTPException
 from typing import Optional
 
@@ -16,8 +16,8 @@ import asyncio
 import openai
 
 
-# # Get the OPENAI_KEY from environment
-# OPENAI_KEY = os.environ.get("OPENAI_API_KEY")
+# Get the OPENAI_KEY from environment
+OPENAI_KEY = os.environ.get("OPENAI_API_KEY")
 
 clientOpenAi = OpenAI(api_key=OPENAI_KEY)
 
@@ -67,7 +67,7 @@ def read_item(item_id: int, q: Optional[str] = None):
 class ChatRequestAssistantStreamID(BaseModel):
     message: str
     thread_id: str | None = None  # Optional, to maintain context
-    assistant_id: str | None = None  # Opcional, para mantener contexto
+    assistant_id: str | None = None  # Opcional, but NOT
 
 
 @app.post("/chat_a_stream_id")
