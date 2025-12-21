@@ -19,7 +19,7 @@ import openai
 # Get the OPENAI_KEY from environment
 OPENAI_KEY = os.environ.get("OPENAI_API_KEY")
 
-clientOpenAi = OpenAI(api_key=OPENAI_KEY)
+# clientOpenAi = OpenAI(api_key=OPENAI_KEY)
 
 
 # This is for Assistant
@@ -64,17 +64,14 @@ def read_item(item_id: int, q: Optional[str] = None):
 
 
 
-class ChatRequestAssistantStreamID(BaseModel):
+class ChatRequestAssistantStream(BaseModel):
     message: str
     thread_id: str | None = None  # Optional, to maintain context
-    assistant_id: str | None = None  # Opcional, but NOT
 
 
-@app.post("/chat_a_stream_id")
-async def chat_with_assistant(request: ChatRequestAssistantStreamID):
+@app.post("/chat_a_stream_last")
+async def chat_with_assistant(request: ChatRequestAssistantStream):
     print(request.thread_id)
-    print(request.assistant_id)
-    assistantID = request.assistant_id
     try:
         # Crear un nuevo hilo si no existe
         if not request.thread_id:
@@ -93,7 +90,7 @@ async def chat_with_assistant(request: ChatRequestAssistantStreamID):
         # Iniciar la tarea del asistente
         run = openai.beta.threads.runs.create(
             thread_id=thread_id,
-            assistant_id=assistantID
+            assistant_id=ASSISTANT_ID
         )
 
         # Esperar a que el asistente responda
